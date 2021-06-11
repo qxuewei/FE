@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jssdkBridgedemo</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <a id="scanResult">这里展示扫描结果</a>
+    <hr>
+    <input type="button" value="扫一扫(WebViewJavascriptBridge)" id="scanId">
+
+    <script>
+        function setupWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+            if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+            window.WVJBCallbacks = [callback];
+            var WVJBIframe = document.createElement('iframe');
+            WVJBIframe.style.display = 'none';
+            WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+            document.documentElement.appendChild(WVJBIframe);
+            setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0)
+        }
+
+        setupWebViewJavascriptBridge(function (bridge) {
+            // WebViewJavascriptBridge
+            document.getElementById('scanId').onclick = function () {
+                console.log('js call iOS: jssdk.scan')
+                bridge.callHandler('jssdk.scan', { 'blogURL': 'http://www.qiuxuewei.com' }, function (response) {
+                    console.log('JS got response', response)
+                    document.getElementById("scanResult").innerHTML = "扫描结果：" + response;;
+                })
+            }
+        })
+    </script>
+
+</body>
+
+
+</html>

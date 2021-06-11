@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSSDK</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+
+<script type="text/javascript">
+
+    function scanResult(res) {
+        document.getElementById("scanResult").innerHTML = "扫描结果：" + res;;
+    }
+
+    //扫一扫(JavaScriptCore)
+    function scan(param) {
+        console.log("scan" + param);
+        WebViewJavascriptBridge.scan(param);
+    }
+
+    //扫一扫(WKScriptMessageHandler)
+    function scanWKScript(param) {
+        console.log("scanWKScript" + param);
+        window.webkit.messageHandlers.scan.postMessage(param)
+    }
+
+</script>
+
+<body>
+    <a id="scanResult">这里展示扫描结果</a>
+    <hr>
+    <a href="jssdk://scan">扫一扫(拦截url)</a>
+    <hr>
+    <input type="button" value="扫一扫(JavaScriptCore)" onclick="scan('jscore')">
+    <hr>
+    <input type="button" value="扫一扫(WKScriptMessageHandler)" onclick="scanWKScript('WKScriptMessageHandler')">
+</body>
+
+
+</html>
