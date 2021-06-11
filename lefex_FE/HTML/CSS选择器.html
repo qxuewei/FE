@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS选择器</title>
+
+    <style>
+
+
+
+        p {
+            color: red;
+        }
+
+        .xw {
+            font-weight: bold;
+            text-decoration: line-through;
+        }
+
+        #blog {
+            color: royalblue;
+        }
+
+        /* 默认状态 */
+        a {
+            color: orange;
+            font-weight: bold;
+        }
+        /* 访问后的状态 */
+        a:visited {
+            color: gray;
+        }
+        /* 悬停、点击、聚焦时的样式 */
+        a:hover,
+        a:active,
+        a:focus {
+            color: darkred;
+            text-decoration: none;
+        }
+        
+        p::first-letter {
+            font-weight: bold;
+        }
+        
+        div p {
+            color: darkslategrey;
+        }
+
+        div > p {
+            color: forestgreen;
+        }
+
+        div + p {
+            color: fuchsia;
+        }
+
+        div ~ p {
+            color: indigo;
+        }
+
+        div,p {
+            color:deeppink;
+        }
+
+    </style>
+
+</head>
+
+
+
+<p class="xw">极客学伟</p>
+<div class="xw">FE</div>
+<p id="blog">博客</p>
+<a href="http://www.qiuxuewei.com">www.qiuxuewei.com</a>
+
+<br>
+
+<body>
+    <div>
+        <p>|__div->p1</p>
+        <p>|__div->p2</p>
+        <section>
+            <p>|_____div->section->p</p>
+            <p>|_____div->section->p</p>
+            <div>|_____div->section->div</div>
+        </section>
+    </div>
+    <p>|__p1</p>
+    <p>|__p2</p>
+</body>
+
+</html>

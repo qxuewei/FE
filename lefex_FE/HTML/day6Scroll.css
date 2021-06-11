@@ -23,7 +23,8 @@ div > span {
 }
 
 div :first-child {
-    margin-left: 15px;
+    margin-left: 35px;
+    /* color: rebeccapurple; */
 }
 
 div :last-child {
