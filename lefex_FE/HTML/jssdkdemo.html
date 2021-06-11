@@ -18,13 +18,13 @@
 
     //扫一扫(JavaScriptCore)
     function scan(param) {
-        console.log("scan" + param);
+        console.log("scan: " + param);
         WebViewJavascriptBridge.scan(param);
     }
 
     //扫一扫(WKScriptMessageHandler)
     function scanWKScript(param) {
-        console.log("scanWKScript" + param);
+        console.log("scanWKScript: " + param);
         window.webkit.messageHandlers.scan.postMessage(param)
     }
 
